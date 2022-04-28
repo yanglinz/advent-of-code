@@ -1,3 +1,6 @@
+mod year2015;
+
 fn main() {
-    println!("Hello, world!");
+    let foo = year2015::day1::part1();
+    println!("{}", foo);
 }
