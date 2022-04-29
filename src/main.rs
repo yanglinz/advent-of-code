@@ -15,6 +15,6 @@ fn get_input() -> String {
 
 fn main() {
     let input = get_input();
-    let result = year2015::day1::part1(&input);
+    let result = year2015::day1::part2(&input);
     println!("Result: {}", result);
 }
