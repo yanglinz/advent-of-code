@@ -1,6 +1,9 @@
 pub fn part1(dimensions: &str) -> u32 {
     fn get_area(l: u32, w: u32, h: u32) -> u32 {
-        let slack = l * w;
+        let mut smallest_side = [l, w, h];
+        smallest_side.sort();
+        let slack = smallest_side[0] * smallest_side[1];
+
         2 * l * w + 2 * w * h + 2 * h * l + slack
     }
 
@@ -28,6 +31,7 @@ mod tests {
     fn test_part1() {
         assert_eq!(part1("2x3x4"), 58);
         assert_eq!(part1("1x1x10"), 43);
+        assert_eq!(part1("2x3x4\n1x1x10"), 58 + 43);
     }
 
     #[test]
