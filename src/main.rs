@@ -4,7 +4,7 @@ use std::path;
 mod year2015;
 
 fn get_input() -> String {
-    let data_file = path::Path::new("./src/year2015/data/day1.txt");
+    let data_file = path::Path::new("./src/year2015/data/day2.txt");
     let content = fs::read_to_string(data_file);
 
     match content {
@@ -15,6 +15,6 @@ fn get_input() -> String {
 
 fn main() {
     let input = get_input();
-    let result = year2015::day1::part2(&input);
+    let result = year2015::day2::part1(&input);
     println!("Result: {}", result);
 }
