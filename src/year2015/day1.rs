@@ -1,6 +1,6 @@
-pub fn part1(parents: &str) -> i32 {
+pub fn part1(parens: &str) -> i32 {
     let mut res = 0;
-    for c in parents.chars() {
+    for c in parens.chars() {
         if c == '(' {
             res = res + 1;
         } else if c == ')' {
