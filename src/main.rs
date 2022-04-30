@@ -1,20 +1,9 @@
-use std::collections::HashMap;
 use std::fs;
 use std::path;
 
 use clap::Parser;
 
 mod year2015;
-
-fn get_input(year: u16, day: u8) -> String {
-    let data_file = path::Path::new("./src/year2015/data/day3.txt");
-    let content = fs::read_to_string(data_file);
-
-    match content {
-        Ok(str) => str,
-        Err(e) => panic!("Could not read input: {:?}", e),
-    }
-}
 
 /// Advent of code solutions
 #[derive(Parser, Debug)]
@@ -31,18 +20,40 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
+    let year = args.year;
+    let day = args.day;
 
-    let year_2015_days = HashMap::from([
-        (1, year2015::day1::part1),
-        (2, year2015::day2::part2),
-        (3, year2015::day3::part2),
-    ]);
+    fn get_input(year: u16, day: u8) -> String {
+        let year_dir = format!("year{}", year);
+        let day_file = format!("day{}.txt", day);
+        let input_path = path::Path::new("./src")
+            .join(year_dir)
+            .join("data")
+            .join(day_file);
+        let content = fs::read_to_string(input_path);
+        match content {
+            Ok(str) => str,
+            Err(e) => panic!("Could not read input: {:?}", e),
+        }
+    }
 
-    // let mapping
+    let input = get_input(year, day);
+    let results = match (year, day) {
+        (2015, 1) => (
+            year2015::day1::part1(&input).to_string(),
+            year2015::day1::part2(&input).to_string(),
+        ),
+        (2015, 2) => (
+            year2015::day2::part1(&input).to_string(),
+            year2015::day2::part2(&input).to_string(),
+        ),
+        (2015, 3) => (
+            year2015::day3::part1(&input).to_string(),
+            year2015::day3::part2(&input).to_string(),
+        ),
+        _ => panic!("Wrong input"),
+    };
 
-    println!("{:?}", args);
-
-    let input = get_input(2015, 1);
-    let result = year2015::day3::part2(&input);
-    println!("Result: {}", result);
+    println!("Part1 Results: {}", results.0);
+    println!("Part1 Results: {}", results.1);
 }
