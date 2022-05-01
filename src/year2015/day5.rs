@@ -49,6 +49,10 @@ fn is_nice(s: &str) -> bool {
     true
 }
 
+fn is_nice_redux(s: &str) -> bool {
+    false
+}
+
 pub fn part1(strings: &str) -> u32 {
     let mut count = 0;
     for s in strings.trim().split("\n") {
