@@ -2,9 +2,9 @@ pub fn part1(parens: &str) -> i32 {
     let mut res = 0;
     for c in parens.chars() {
         if c == '(' {
-            res = res + 1;
+            res += 1;
         } else if c == ')' {
-            res = res - 1;
+            res -= 1;
         }
     }
 
@@ -15,9 +15,9 @@ pub fn part2(parens: &str) -> u32 {
     let mut res = 0;
     for (i, c) in parens.chars().enumerate() {
         if c == '(' {
-            res = res + 1;
+            res += 1;
         } else if c == ')' {
-            res = res - 1;
+            res -= 1;
         }
 
         if res == -1 {

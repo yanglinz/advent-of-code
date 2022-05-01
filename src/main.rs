@@ -1,20 +1,59 @@
 use std::fs;
 use std::path;
 
+use clap::Parser;
+
 mod year2015;
 
-fn get_input() -> String {
-    let data_file = path::Path::new("./src/year2015/data/day3.txt");
-    let content = fs::read_to_string(data_file);
+/// Advent of code solutions
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// Advent calendar year
+    #[clap(short, long)]
+    year: u16,
 
-    match content {
-        Ok(str) => str,
-        Err(e) => panic!("Could not read input: {:?}", e),
-    }
+    /// Advent calendar day
+    #[clap(short, long)]
+    day: u8,
 }
 
 fn main() {
-    let input = get_input();
-    let result = year2015::day3::part2(&input);
-    println!("Result: {}", result);
+    let args = Args::parse();
+    let year = args.year;
+    let day = args.day;
+
+    fn get_input(year: u16, day: u8) -> String {
+        let year_dir = format!("year{}", year);
+        let day_file = format!("day{}.txt", day);
+        let input_path = path::Path::new("./src")
+            .join(year_dir)
+            .join("data")
+            .join(day_file);
+        let content = fs::read_to_string(input_path);
+        match content {
+            Ok(str) => str,
+            Err(e) => panic!("Could not read input: {:?}", e),
+        }
+    }
+
+    let input = get_input(year, day);
+    let results = match (year, day) {
+        (2015, 1) => (
+            year2015::day1::part1(&input).to_string(),
+            year2015::day1::part2(&input).to_string(),
+        ),
+        (2015, 2) => (
+            year2015::day2::part1(&input).to_string(),
+            year2015::day2::part2(&input).to_string(),
+        ),
+        (2015, 3) => (
+            year2015::day3::part1(&input).to_string(),
+            year2015::day3::part2(&input).to_string(),
+        ),
+        _ => panic!("Wrong input"),
+    };
+
+    println!("Part1 Results: {}", results.0);
+    println!("Part1 Results: {}", results.1);
 }

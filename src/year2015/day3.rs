@@ -7,8 +7,6 @@ struct Position {
 }
 
 fn get_next_position(current: &Position, movement: &char) -> Position {
-    Position { x: 1, y: 2 };
-
     match movement {
         '^' => Position {
             x: current.x,
