@@ -32,7 +32,7 @@ fn main() {
             .join(day_file);
         let content = fs::read_to_string(input_path);
         match content {
-            Ok(str) => str,
+            Ok(s) => s,
             Err(e) => panic!("Could not read input: {:?}", e),
         }
     }
@@ -50,6 +50,10 @@ fn main() {
         (2015, 3) => (
             year2015::day3::part1(&input).to_string(),
             year2015::day3::part2(&input).to_string(),
+        ),
+        (2015, 4) => (
+            year2015::day4::part1(&input).to_string(),
+            year2015::day4::part2(&input).to_string(),
         ),
         _ => panic!("Wrong input"),
     };
