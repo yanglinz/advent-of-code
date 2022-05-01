@@ -32,7 +32,7 @@ fn main() {
             .join(day_file);
         let content = fs::read_to_string(input_path);
         match content {
-            Ok(str) => str,
+            Ok(s) => s,
             Err(e) => panic!("Could not read input: {:?}", e),
         }
     }
