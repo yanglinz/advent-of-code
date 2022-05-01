@@ -49,7 +49,14 @@ fn is_nice(s: &str) -> bool {
 }
 
 pub fn part1(strings: &str) -> u32 {
-    1
+    let mut count = 0;
+    for s in strings.trim().split("\n") {
+        if is_nice(&s) {
+            count += 1
+        }
+    }
+
+    count
 }
 
 pub fn part2(strings: &str) -> u32 {
@@ -74,6 +81,7 @@ mod tests {
         assert_eq!(has_repeats(""), false);
 
         assert_eq!(is_nice("ugknbfddgicrmopn"), true);
+        assert_eq!(is_nice("ugknbfddgicrmopnab"), false);
         assert_eq!(is_nice("aaa"), false);
         assert_eq!(is_nice("jchzalrnumimnmhp"), false);
         assert_eq!(is_nice("haegwjzuvuyypxyu"), false);
@@ -82,14 +90,9 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        // Commenting out; it's slow
-        // assert_eq!(part1("abcdef"), 609_043);
-        // assert_eq!(part1("pqrstuv"), 1_048_970);
     }
 
     #[test]
     fn test_part2() {
-        // Commenting out; it's slow
-        // assert_eq!(part2("abcdef"), 6_742_839);
     }
 }
