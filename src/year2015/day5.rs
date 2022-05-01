@@ -1,7 +1,8 @@
 fn has_three_vowels(s: &str) -> bool {
     let mut num_vowels = 0;
-    for c in "aeiou".chars() {
-        if s.contains(c) {
+    let vowels = "aeiou";
+    for c in s.chars() {
+        if vowels.contains(c) {
             num_vowels += 1;
         }
 
@@ -70,6 +71,7 @@ mod tests {
     #[test]
     fn test_helpers() {
         assert_eq!(has_three_vowels("aio"), true);
+        assert_eq!(has_three_vowels("aaa"), true);
         assert_eq!(has_three_vowels("abc"), false);
         assert_eq!(has_three_vowels("ai"), false);
 
@@ -82,17 +84,15 @@ mod tests {
 
         assert_eq!(is_nice("ugknbfddgicrmopn"), true);
         assert_eq!(is_nice("ugknbfddgicrmopnab"), false);
-        assert_eq!(is_nice("aaa"), false);
+        assert_eq!(is_nice("aaa"), true);
         assert_eq!(is_nice("jchzalrnumimnmhp"), false);
         assert_eq!(is_nice("haegwjzuvuyypxyu"), false);
         assert_eq!(is_nice("dvszwmarrgswjxmb"), false);
     }
 
     #[test]
-    fn test_part1() {
-    }
+    fn test_part1() {}
 
     #[test]
-    fn test_part2() {
-    }
+    fn test_part2() {}
 }
