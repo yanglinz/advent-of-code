@@ -53,8 +53,8 @@ fn is_nice(s: &str) -> bool {
 
 pub fn part1(strings: &str) -> u32 {
     let mut count = 0;
-    for s in strings.trim().split("\n") {
-        if is_nice(&s) {
+    for s in strings.trim().split('\n') {
+        if is_nice(s) {
             count += 1
         }
     }
@@ -65,8 +65,8 @@ pub fn part1(strings: &str) -> u32 {
 fn has_pairs(s: &str) -> bool {
     let re = Regex::new(r"(\w\w)\w*\1").unwrap();
     let m = re.is_match(s);
-    if m.is_ok() {
-        m.unwrap()
+    if let Ok(is_match) = m {
+        is_match
     } else {
         false
     }
@@ -75,8 +75,8 @@ fn has_pairs(s: &str) -> bool {
 fn has_sandwich(s: &str) -> bool {
     let re = Regex::new(r"(\w)\w\1").unwrap();
     let m = re.is_match(s);
-    if m.is_ok() {
-        m.unwrap()
+    if let Ok(is_match) = m {
+        is_match
     } else {
         false
     }
@@ -88,8 +88,8 @@ fn is_nice_redux(s: &str) -> bool {
 
 pub fn part2(strings: &str) -> u32 {
     let mut count = 0;
-    for s in strings.trim().split("\n") {
-        if is_nice_redux(&s) {
+    for s in strings.trim().split('\n') {
+        if is_nice_redux(s) {
             count += 1
         }
     }
