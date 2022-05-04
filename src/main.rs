@@ -55,6 +55,10 @@ fn main() {
             year2015::day4::part1(&input).to_string(),
             year2015::day4::part2(&input).to_string(),
         ),
+        (2015, 5) => (
+            year2015::day5::part1(&input).to_string(),
+            year2015::day5::part2(&input).to_string(),
+        ),
         _ => panic!("Wrong input"),
     };
 
